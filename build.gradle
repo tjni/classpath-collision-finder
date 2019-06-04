@@ -1,8 +1,25 @@
-plugins {
-  id 'java'
-  id 'idea'
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'maven-publish'
+
+repositories {
+  mavenCentral()
 }
 
 dependencies {
   implementation gradleApi()
+  implementation 'io.github.classgraph:classgraph:4.8.31'
+}
+
+sourceCompatibility = '1.8'
+
+group = 'com.example.classpath'
+version = '1.0.0'
+
+publishing {
+  publications {
+    mavenJava(MavenPublication) {
+      from components.java
+    }
+  }
 }
